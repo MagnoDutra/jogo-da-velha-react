@@ -3,11 +3,11 @@ import GameBoard from "./components/GameBoard";
 import Player from "./components/Player";
 
 function App() {
-  const [activePlayer, setActivePlayer] = useState("X");
-  // const playerTurn = turn % 2 == 0 ? "p1" : "p2";
+  const [turn, setTurn] = useState(0);
+  const playerTurnSymbol = turn % 2 == 0 ? "X" : "O";
 
   function handleSelectSquare() {
-    setActivePlayer((curPlayer) => (curPlayer === "X" ? "O" : "X"));
+    setTurn((turn) => turn + 1);
   }
 
   return (
@@ -17,17 +17,17 @@ function App() {
           <Player
             initialName="Player 1"
             symbol="X"
-            isActive={activePlayer === "X"}
+            playerTurn={playerTurnSymbol}
           />
           <Player
             initialName="Player 2"
             symbol="O"
-            isActive={activePlayer === "O"}
+            playerTurn={playerTurnSymbol}
           />
         </ol>
         <GameBoard
           onSelectSquare={handleSelectSquare}
-          activePlayer={activePlayer}
+          activePlayer={playerTurnSymbol}
         />
       </div>
       LOG
